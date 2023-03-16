@@ -1,7 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const Elements = (props) => {
   const { coordinates } = props;
+  // useEffect(() => {
+  //   onLoad();
+  // }, [onLoad]);
+
+  // useEffect(() => {
+  //   if (onAllLoaded) {
+  //     onAllLoaded();
+  //   }
+  // }, [onAllLoaded]);
 
   const [selectedIds, setSelectedIds] = useState([]);
   // Toggle selection of element with given ID
@@ -17,32 +26,30 @@ const Elements = (props) => {
   const getElementClassName = (id) => {
     switch (id) {
       case 'Gene1':
-        return 'bg-red';
+        return 'bg-red-500';
       case 'Gene2':
-        return 'bg-green';
+        return 'bg-green-500';
       case 'Gene3':
-        return 'bg-blue';
+        return 'bg-blue-500';
       case 'Gene4':
-        return 'bg-yellow';
+        return 'bg-yellow-500';
       case 'Gene5':
-        return 'bg-orange';
+        return 'bg-orange-500';
       case 'Gene6':
-        return 'bg-cyan';
+        return 'bg-cyan-500';
       case 'Gene7':
-        return 'bg-violet';
+        return 'bg-violet-500';
       default:
-        return 'bg-gray';
+        return 'bg-gray-500';
     }
   };
   return (
     <div>
       {coordinates.map((element, index) => (
         <div
-          className={`absolute  text-white cursor-pointer text-[16px]  ${getElementClassName(
+          className={`absolute elements text-white cursor-pointer text-[16px]  ${getElementClassName(
             element.id
-          )}-500 hover:${getElementClassName(
-            element.id
-          )}-800 hover:drop-shadow-lg p-1 rounded-lg`}
+          )} hover:drop-shadow-lg p-1 rounded-lg`}
           style={{ left: `${element.x}px`, top: `${element.y}px` }}
           key={`${element.id}-${index}`}
           onClick={() => toggleElementSelection(element.id)}
